@@ -14,9 +14,8 @@ class BikinTabelOrder extends Migration
     {
         Schema::create('orderr', function (Blueprint $table) {
             $table->increments('id_order');
-			$table->date('tgl_order');
-			$table->String('nama_barang');
-			$table->integer('jumlah_barang');
+            $table->date('tgl_order');
+            $table->integer('jumlah_barang');
             $table->timestamps();
         });
     }
