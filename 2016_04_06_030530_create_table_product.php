@@ -16,6 +16,8 @@ class CreateTableProduct extends Migration
             $table->increments('id_product');
             $table->string('nama_product');
             $table->string('kategori_product');
+            $table->integer('id_seller')->unsigned();
+            $table->foreign('id_seller')->references('id_seller')->on('sellers');
             $table->timestamps();
         });
     }
