@@ -26,7 +26,7 @@ class CreateForeignkey extends Migration
     public function down()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            //
+            $table->dropForeign(['id_user']);
         });
     }
 }
