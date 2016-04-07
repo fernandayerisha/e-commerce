@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableToko extends Migration
+class CreateTableUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateTableToko extends Migration
      */
     public function up()
     {
-        Schema::create('sellers', function (Blueprint $table) {
-            $table->increments('id_seller');
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nama');
-            $table->string('contact');
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateTableToko extends Migration
      */
     public function down()
     {
-        Schema::drop('sellers');
+        Schema::drop('users');
     }
 }

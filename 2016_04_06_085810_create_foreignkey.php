@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableToko extends Migration
+class CreateForeignkey extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateTableToko extends Migration
      */
     public function up()
     {
-        Schema::create('sellers', function (Blueprint $table) {
-            $table->increments('id_seller');
-            $table->string('nama');
-            $table->string('contact');
-            $table->timestamps();
+        Schema::table('sellers', function (Blueprint $table) {
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateTableToko extends Migration
      */
     public function down()
     {
-        Schema::drop('sellers');
+        Schema::table('sellers', function (Blueprint $table) {
+            //
+        });
     }
 }
