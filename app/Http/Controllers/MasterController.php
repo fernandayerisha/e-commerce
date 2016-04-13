@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Blog;
+use App\User;
 use App\Http\Requests;
 
 class MasterController extends Controller
@@ -15,8 +15,8 @@ class MasterController extends Controller
      */
     public function index()
     {
-      $blogs = Blog::all();
-      return view('blog.index', ['datauser' => $blogs]);
+      $userku = User::all();
+      return view('user.index', ['datauser' => $userku]);
 
     }
 
@@ -27,7 +27,7 @@ class MasterController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        return view('user.create');
     }
 
     /**
@@ -44,13 +44,13 @@ class MasterController extends Controller
           'password' => 'required',
         ]);
 
-        $blog = new Blog;
-        $blog->nama     = $request->nama;
-        $blog->email     = $request->email;
-        $blog->password = $request->password;
+        $userku = new User;
+        $userku->nama     = $request->nama;
+        $userku->email    = $request->email;
+        $userku->password = $request->password;
 
-        $blog->save();
-        return redirect('blog')->with('message', 'Data Telah di Tambahkan');
+        $userku->save();
+        return redirect('user')->with('message', 'Data Telah di Tambahkan');
     }
 
     /**
@@ -61,13 +61,13 @@ class MasterController extends Controller
      */
     public function show($id)
     {
-        $blog = Blog::find($id);
+        $userku = User::find($id);
 
-        if(!$blog){
+        if(!$userku){
           abort(404);
         }
 
-        return view('blog.single')->with('blog', $blog);
+        return view('user.single')->with('data', $userku);
     }
 
     /**
@@ -78,13 +78,13 @@ class MasterController extends Controller
      */
     public function edit($id)
     {
-        $blog = Blog::find($id);
+        $userku = User::find($id);
 
-        if(!$blog){
+        if(!$userku){
           abort(404);
         }
 
-        return view('blog.edit')->with('blog', $blog);
+        return view('user.edit')->with('data', $userku);
     }
 
     /**
@@ -102,13 +102,13 @@ class MasterController extends Controller
         'password' => 'required',
       ]);
 
-      $blog = Blog::find($id);
-      $blog->nama     = $request->nama;
-      $blog->email     = $request->email;
-      $blog->password = $request->password;
+      $userku = User::find($id);
+      $userku->nama     = $request->nama;
+      $userku->email    = $request->email;
+      $userku->password = $request->password;
 
-      $blog->save();
-      return redirect('blog')->with('message', 'Data Telah di Update');
+      $userku->save();
+      return redirect('user')->with('message', 'Data Telah di Update');
     }
 
     /**
@@ -119,8 +119,8 @@ class MasterController extends Controller
      */
     public function destroy($id)
     {
-        $blog = Blog::find($id);
-        $blog->delete();
-        return redirect('blog')->with('message', 'Data Telah di Hapus');
+        $userku = User::find($id);
+        $userku->delete();
+        return redirect('user')->with('message', 'Data Telah di Hapus');
     }
 }
