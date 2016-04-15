@@ -1,6 +1,10 @@
 <h3 align="center" style="font-size:30px;">Ini Page Create User</h3>
 
+<<<<<<< HEAD:resources/views/blog/create.blade.php
 <form class=""  action="/blog" method="post">
+=======
+<form class=""  action="/user" method="post">
+>>>>>>> e0ade6f375c5cd3ddc81b9deadf60894d75aa49f:resources/views/user/create.blade.php
 
   Nama : <input type="text" name="nama" value="" placeholder="Nama"></br>
   {{ ($errors->has('nama')) ? $errors->first('nama') : '' }}<br>

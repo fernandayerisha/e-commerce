@@ -15,10 +15,14 @@ Route::get('/', 'LatihanController@index');
 Route::get('/about', 'LatihanController@about');
 Route::get('/portofolio', 'LatihanController@portofolio');
 
+<<<<<<< HEAD
 Route::resource('blog', 'MasterController');
 Route::resource('product', 'ProductController');
 
 // Route::get('/detail','ProductController@detail');
+=======
+Route::resource('user', 'MasterController');
+>>>>>>> e0ade6f375c5cd3ddc81b9deadf60894d75aa49f
 
 // Route::get('/latihan1', function () {
 //   return view('latihan1');
