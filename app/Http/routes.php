@@ -15,7 +15,14 @@ Route::get('/', 'LatihanController@index');
 Route::get('/about', 'LatihanController@about');
 Route::get('/portofolio', 'LatihanController@portofolio');
 
+
+Route::resource('blog', 'MasterController');
+Route::resource('product', 'ProductController');
+
+// Route::get('/detail','ProductController@detail');
+
 Route::resource('user', 'MasterController');
+
 
 Route::group(['prefix' => 'create'], function(){
   Route::get('/', 'MasterController@create');
