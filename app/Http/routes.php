@@ -17,6 +17,7 @@ Route::get('/portofolio', 'LatihanController@portofolio');
 
 Route::resource('user', 'MasterController');
 
-// Route::get('/latihan1', function () {
-//   return view('latihan1');
-// });
+Route::group(['prefix' => 'create'], function(){
+  Route::get('/', 'MasterController@create');
+  Route::post('ajax_validate', 'MasterController@ajax_validate');
+});

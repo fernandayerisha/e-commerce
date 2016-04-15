@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
+use Validator;
 
 class MasterController extends Controller
 {
@@ -123,4 +124,59 @@ class MasterController extends Controller
         $userku->delete();
         return redirect('user')->with('message', 'Data Telah di Hapus');
     }
+
+    public function ajax_validate(Request $request)
+    {
+      return $this->validation($request);
+    }
+
+    public function validation(Request $request)
+    {
+      $return = array();
+
+      $rules = array(
+          'nama'        => 'required',
+          'email'       => 'required|email',
+          'password'    => 'required',
+          '_token'      => 'required',
+      );
+        $messages = array(
+            'required'  => 'Kolom ini harus diisi.',
+            'email'     => 'Kolom ini harus berisi email yang valid',
+        );
+
+        $validator  = Validator::make($request->all(), $rules, $messages);
+
+        if (!$validator->fails()){
+          $return['status'] = 'success';
+        } else {
+          $return['status'] = 'error';
+          $return['message'] = $validator->messages();
+        }
+        return $return;
+    }
+
+    public function hasil(Request $request)
+     {
+       // PERTAMA KALI LAKUKAN VALIDASI
+       $validasi = $this->validation($request);
+       if ($validasi['status'] == 'success') {
+         echo "validasi berhasil";
+       } else {
+         echo "validasi gagal";
+
+         foreach ($validasi['message']->messages() as $error_key => $error_message) {
+           echo "Inputan " . $error_key;
+           echo "<br>";
+           echo "<ul>";
+           foreach ($error_message as $e_message) {
+             echo "<li>";
+             echo $e_message;
+             echo "</li>";
+           }
+           echo "</ul>";
+         }
+        //  dd($validasi['message']);
+       }
+     }
 }

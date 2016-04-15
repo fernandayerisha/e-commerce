@@ -13,7 +13,7 @@
     <form class="" action="/user/{{$data->id}}" method="post">
       <input type="hidden" name="_method"value="delete">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      <input type="submit" value="Delete">
+      <input type="submit" value="Delete" onClick="deldata()">
     </form>
   <hr>
 @endforeach
