@@ -1,6 +1,6 @@
 <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman Blog</h3>
 {{ Session::get('message')}}
-<a href="/laravel/public/blog/create"><h3>Create</h3></a>
+<a href="/blog/create"><h3>Create</h3></a>
 <hr>
 @foreach ($datauser as $data)
   <a href="blog/{{$data->id}}">

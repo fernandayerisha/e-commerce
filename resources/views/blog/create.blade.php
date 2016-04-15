@@ -1,6 +1,6 @@
 <h3 align="center" style="font-size:30px;">Ini Page Create User</h3>
 
-<form class=""  action="/laravel/public/blog" method="post">
+<form class=""  action="/blog" method="post">
 
   Nama : <input type="text" name="nama" value="" placeholder="Nama"></br>
   {{ ($errors->has('nama')) ? $errors->first('nama') : '' }}<br>
