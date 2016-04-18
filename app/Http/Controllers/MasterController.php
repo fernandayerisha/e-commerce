@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
 use Validator;
+use DB;
 
 class MasterController extends Controller
 {
@@ -16,7 +17,8 @@ class MasterController extends Controller
      */
     public function index()
     {
-      $userku = User::all();
+      $userku = User::paginate(3);
+      // $userku = DB::table('users')->paginate(1);
       return view('user.index', ['datauser' => $userku]);
 
     }
@@ -155,28 +157,4 @@ class MasterController extends Controller
         }
         return $return;
     }
-
-    public function hasil(Request $request)
-     {
-       // PERTAMA KALI LAKUKAN VALIDASI
-       $validasi = $this->validation($request);
-       if ($validasi['status'] == 'success') {
-         echo "validasi berhasil";
-       } else {
-         echo "validasi gagal";
-
-         foreach ($validasi['message']->messages() as $error_key => $error_message) {
-           echo "Inputan " . $error_key;
-           echo "<br>";
-           echo "<ul>";
-           foreach ($error_message as $e_message) {
-             echo "<li>";
-             echo $e_message;
-             echo "</li>";
-           }
-           echo "</ul>";
-         }
-        //  dd($validasi['message']);
-       }
-     }
 }
