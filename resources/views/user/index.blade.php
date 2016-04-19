@@ -26,7 +26,7 @@
 
     <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman User</h3>
     {{ Session::get('message')}}
-    <a href="/user/create"><h3>Create</h3></a>
+    <a href="/user/create"><button>Create</button></a>
 
     <hr>
     <table id="example" class="display" cellspacing="0" width="80%">
@@ -50,7 +50,7 @@
               <a href="user/{{$data->id}}/edit"><input type="button" value="Edit"></a>
 
               <input type="hidden" name="id_delete{{$data->id}}"value="{{$data->id}}">
-              <input type="hidden" name="_method" value="delete">
+              <!-- <input type="hidden" name="_method" value="delete"> -->
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <input type="button" value="Delete" onClick="delData()">
             </form>
