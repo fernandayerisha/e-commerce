@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
+use Validator;
+use DB;
 
 class MasterController extends Controller
 {
@@ -15,7 +17,8 @@ class MasterController extends Controller
      */
     public function index()
     {
-      $userku = User::all();
+      $userku = User::paginate(3);
+      // $userku = DB::table('users')->paginate(1);
       return view('user.index', ['datauser' => $userku]);
 
     }
@@ -122,5 +125,36 @@ class MasterController extends Controller
         $userku = User::find($id);
         $userku->delete();
         return redirect('user')->with('message', 'Data Telah di Hapus');
+    }
+
+    public function ajax_validate(Request $request)
+    {
+      return $this->validation($request);
+    }
+
+    public function validation(Request $request)
+    {
+      $return = array();
+
+      $rules = array(
+          'nama'        => 'required',
+          'email'       => 'required|email',
+          'password'    => 'required',
+          '_token'      => 'required',
+      );
+        $messages = array(
+            'required'  => 'Kolom ini harus diisi.',
+            'email'     => 'Kolom ini harus berisi email yang valid',
+        );
+
+        $validator  = Validator::make($request->all(), $rules, $messages);
+
+        if (!$validator->fails()){
+          $return['status'] = 'success';
+        } else {
+          $return['status'] = 'error';
+          $return['message'] = $validator->messages();
+        }
+        return $return;
     }
 }
