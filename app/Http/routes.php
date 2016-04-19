@@ -12,6 +12,7 @@ Route::resource('user', 'MasterController');
 
 Route::post('user/do_create', 'MasterController@do_create');
 Route::post('user/do_delete', 'MasterController@do_delete');
+Route::post('user/get_data_table', 'MasterController@get_data_table');
 // Route::post('user/do_delete', 'MasterController@destroy');
 
 Route::group(['prefix' => 'create'], function(){

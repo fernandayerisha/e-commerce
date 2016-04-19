@@ -3,7 +3,7 @@
 <script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
 <body>
 <h3 align="center" style="font-size:30px;">Ini Page Create User</h3>
-
+<div class="alert-ajax"></div>
 <form class="formadd"  action="/user" method="post">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
   Nama : <input type="text" name="nama" value="" placeholder="Nama"></br>
@@ -44,8 +44,8 @@
               });
             });
             html_error += '</ul>';
-            $('.alert-danger').html(html_error);
-            $('.alert-danger').show();
+            $('.alert-ajax').html(html_error);
+            $('.alert-ajax').show();
           } else {
             alert('Data berhasil di Tambahkan');
           }

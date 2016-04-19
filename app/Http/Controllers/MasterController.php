@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Http\Requests;
 use Validator;
 use DB;
 
@@ -15,11 +14,15 @@ class MasterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
       $userku = User::paginate(10);
-      // $userku = DB::table('users')->paginate(1);
-      return view('user.index', ['datauser' => $userku]);
+
+      if ($request->ajax()) {
+        return $userku;
+      } else {
+        return view('user.index', ['datauser' => $userku]);
+      }
 
     }
 
@@ -112,25 +115,18 @@ class MasterController extends Controller
 
     public function do_delete(Request $request){
       $id = $request->id_delete;
-      $userku = User::where('id',$id);
-
-      if(!$userku){
+      if(empty($id)){
         $return['status'] = 'error';
       }else{
-        $return['status'] = 'success';
+        User::destroy($id);
+        // $userku = User::find($id);
         // $userku->delete();
-        // $this->destroy($userku);
+        $return['status'] = 'success';
       }
 
-      // $data_del = $request->status_delete;
-      // if ($data_del == 'Delete'){
-      //   $return['status'] = 'success';
-      //   $destroying = $this->destroy($request);
-      // } else {
-      //   $return['status'] = 'error';
-      // }
-      // return $return;
+      return $return;
     }
+
     public function destroy($id){
       $userku = User::find($id);
       if(!$userku){
@@ -141,7 +137,6 @@ class MasterController extends Controller
         $userku->delete();
       }
       return $return;
-      // return redirect('user')->with('message', 'Data Telah di Hapus');
     }
 
     public function do_create(Request $request){
