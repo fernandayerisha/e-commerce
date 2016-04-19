@@ -8,6 +8,7 @@
         border-collapse: collapse;
         width: 100%;
     }
+>>>>>>> ae6e86f2fc72ad2c103195d1e046939c8f8fed55
 
     th, td {
         text-align: left;
