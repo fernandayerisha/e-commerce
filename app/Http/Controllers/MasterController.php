@@ -17,7 +17,7 @@ class MasterController extends Controller
      */
     public function index()
     {
-      $userku = User::paginate(3);
+      $userku = User::paginate(10);
       // $userku = DB::table('users')->paginate(1);
       return view('user.index', ['datauser' => $userku]);
 
@@ -39,21 +39,13 @@ class MasterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-          'nama'     => 'required',
-          'email'    => 'required|email',
-          'password' => 'required',
-        ]);
-
+    public function store(Request $request){
         $userku = new User;
         $userku->nama     = $request->nama;
         $userku->email    = $request->email;
         $userku->password = $request->password;
 
         $userku->save();
-        return redirect('user')->with('message', 'Data Telah di Tambahkan');
     }
 
     /**
@@ -62,8 +54,7 @@ class MasterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
         $userku = User::find($id);
 
         if(!$userku){
@@ -79,8 +70,7 @@ class MasterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         $userku = User::find($id);
 
         if(!$userku){
@@ -97,8 +87,7 @@ class MasterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
       $this->validate($request, [
         'nama'     => 'required',
         'email'    => 'required|email',
@@ -120,20 +109,55 @@ class MasterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $userku = User::find($id);
+
+    public function do_delete(Request $request){
+      $id = $request->id_delete;
+      $userku = User::where('id',$id);
+
+      if(!$userku){
+        $return['status'] = 'error';
+      }else{
+        $return['status'] = 'success';
+        // $userku->delete();
+        // $this->destroy($userku);
+      }
+
+      // $data_del = $request->status_delete;
+      // if ($data_del == 'Delete'){
+      //   $return['status'] = 'success';
+      //   $destroying = $this->destroy($request);
+      // } else {
+      //   $return['status'] = 'error';
+      // }
+      // return $return;
+    }
+    public function destroy($id){
+      $userku = User::find($id);
+      if(!$userku){
+        abort(404);
+        $return['status'] = 'error';
+      }else{
+        $return['status'] = 'success';
         $userku->delete();
-        return redirect('user')->with('message', 'Data Telah di Hapus');
+      }
+      return $return;
+      // return redirect('user')->with('message', 'Data Telah di Hapus');
     }
 
-    public function ajax_validate(Request $request)
-    {
+    public function do_create(Request $request){
+      $validasi = $this->validation($request);
+      if($validasi['status'] == 'success'){
+        $this->store($request);
+      }else{
+        return $validasi;
+      }
+    }
+
+    public function ajax_validate(Request $request){
       return $this->validation($request);
     }
 
-    public function validation(Request $request)
-    {
+    public function validation(Request $request){
       $return = array();
 
       $rules = array(

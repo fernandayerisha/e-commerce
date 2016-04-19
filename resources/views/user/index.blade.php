@@ -29,7 +29,7 @@
     <a href="/user/create"><h3>Create</h3></a>
 
     <hr>
-    <table id="example" class="display" cellspacing="0" width="80%" style="table-border:1px">
+    <table id="example" class="display" cellspacing="0" width="80%">
       <thead>
         <tr>
           <th>ID</th>
@@ -45,20 +45,80 @@
           <td>{{ $data->nama }}</td>
           <td>{{ $data->email }}</td>
           <td>
-            <form class="" action="/user/{{$data->id}}" method="post">
+            <form class="delForm{{$data->id}}" id="{{$data->id}}" action="/user/{{$data->id}}" method="post">
               <a href="user/{{$data->id}}"><input type="button" value="Detail"></a>
               <a href="user/{{$data->id}}/edit"><input type="button" value="Edit"></a>
-              <input type="hidden" name="_method"value="delete">
+
+              <input type="hidden" name="id_delete{{$data->id}}"value="{{$data->id}}">
+              <input type="hidden" name="_method" value="delete">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="submit" value="Delete" onClick="deldata()">
+              <input type="button" value="Delete" onClick="delData()">
             </form>
           </td>
         </tr>
+
+        <script type="text/javascript">
+         $.ajaxSetup({
+          headers: {
+           'X-CSRF-TOKEN': $('input[name="_token"]').val()
+          }
+         });
+        </script>
+        <script>
+
+        function delData(){
+          var r = confirm("Apa anda yakin akan menghapus data?");
+          if (r == true) {
+                var data = $('input[name="id_delete{{$data->id}}"]').val();
+                $.ajax({
+                  url : "{{url('user/do_delete')}}",
+                  method : 'POST',
+                  data : data,
+                  success : function(response) {
+                    if (response.status == 'error') {
+                      alert('Delete Error');
+                    } else {
+                      alert('Delete Success!!');
+                      // document.getElementById('{{$data->id}}').submit();
+                    }
+                  }
+                });
+          } else {
+            alert('Delete Canceled!');
+          }
+        };
+        </script>
+
     @endforeach
       </tfoot>
     </table>
     <hr>
     {{ $datauser->links() }}
+
+    <script>
+
+    function delData2(){
+      var r = confirm("Apa anda yakin akan menghapus data?");
+      if (r == true) {
+            var data = $('.delForm{{$data->id}}').serializeArray();
+            $.ajax({
+              url : "{{url('user/do_delete')}}",
+              method : 'POST',
+              data : data,
+              success : function(response) {
+                if (response.status == 'error') {
+                  alert('Delete Error');
+                } else {
+                  alert('Delete Success!!');
+                }
+              }
+            });
+      } else {
+        alert('Delete Canceled!');
+      }
+    };
+
+    </script>
   </div>
 </body>
 </html>

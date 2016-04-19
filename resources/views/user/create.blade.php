@@ -15,8 +15,6 @@
   <input type="submit" value="Submit">
 </form>
 
-<div class="alert alert-danger" style="display:none; background-color:red; color:white;"></div>
-
 </body>
 
 <script type="text/javascript">
@@ -28,13 +26,11 @@
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
-
     $('.formadd').submit(function(event){
       event.preventDefault();
-
       var data = $('.formadd').serializeArray();
       $.ajax({
-        url : "{{url('create/ajax_validate')}}",
+        url : "{{url('user/do_create')}}",
         method : 'POST',
         data : data,
         success : function(response) {
@@ -51,8 +47,7 @@
             $('.alert-danger').html(html_error);
             $('.alert-danger').show();
           } else {
-            $('.alert-success').html('Validasi sudah berhasil');
-            $('.alert-success').show();
+            alert('Data berhasil di Tambahkan');
           }
         }
       });
