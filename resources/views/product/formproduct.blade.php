@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <title>Tambah Barang</title>
-<!-- <script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script> -->
+<script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
 <style>
 #model
 {
@@ -14,7 +14,7 @@ table {width:100%;}
 <body>
 <center><h1><u>FORMOLIR PENAMBAHAN BARANG</u></h1></center>
 <div id="model">
-<!-- @if (count($errors) > 0)
+@if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -22,7 +22,7 @@ table {width:100%;}
             @endforeach
         </ul>
     </div>
-@endif -->
+@endif
 <div class="alert alert-danger" style="display:none; background-color:red; color:white;"></div>
 <div class="alert alert-success" style="display:none;"></div>
 <form class="formproduct" action="/product" method="post">
@@ -34,7 +34,7 @@ table {width:100%;}
     <td>{{ ($errors->has('nama')) ? $errors->first('nama') : '' }}</td>
     <br>
 	</tr>
-	
+
 	<tr>
   	<td>Harga</td>
 		<td>:</td>
@@ -47,6 +47,7 @@ table {width:100%;}
     <td>:</td>
     <td>
         <select name="sKategori">
+					<option value="">Pilih kategori</option>
           @foreach ($cat as $data)
 		      <option value="{{$data->id_category}}">{{$data->nama_kategori}}</option>
           @endforeach
@@ -59,26 +60,21 @@ table {width:100%;}
     <td>:</td>
     <td>
         <select name="sToko">
+					<option value="">Pilih nama toko</option>
           @foreach ($seller as $data)
 		      <option value="{{$data->id_seller}}">{{$data->nama}}</option>
           @endforeach
         </select><br>
     </td>
   </tr>
-  <!-- <tr>
-		<td>Keterangan</td>
-		<td>:</td>
-		<td><textarea name="ket" rows="10" cols="50" placeholder="Isi keterangan produk disini"></textarea>
-    </td>
-	</tr> -->
-	<table>
+	</table>
 <br>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <input type="submit" value="Tambahkan">
 </form>
 </div>
 </body>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
  $.ajaxSetup({
   headers: {
    'X-CSRF-TOKEN': $('input[name="_token"]').val()
@@ -92,7 +88,7 @@ table {width:100%;}
       event.preventDefault();
       var data = $('.formproduct').serializeArray();
       $.ajax({
-        url : "{{url('formproduct/ajax_validate')}}",
+        url : "{{url('product/validasi_create')}}",
         method : 'POST',
         data : data,
         success : function(response) {
@@ -109,7 +105,7 @@ table {width:100%;}
             $('.alert-danger').html(html_error);
             $('.alert-danger').show();
           } else {
-            $('.alert-success').html('Validasi sudah berhasil');
+            $('.alert-success').html('Product sudah berhasil ditambahkan');
             $('.alert-success').show();
           }
         }
@@ -117,5 +113,5 @@ table {width:100%;}
     });
 
   });
-</script> -->
+</script>
 </html>

@@ -1,10 +1,7 @@
 <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman Blog</h3>
 {{ Session::get('message')}}
-<<<<<<< HEAD:resources/views/blog/index.blade.php
-<a href="/blog/create"><h3>Create</h3></a>
-=======
+
 <a href="/user/create"><h3>Create</h3></a>
->>>>>>> e0ade6f375c5cd3ddc81b9deadf60894d75aa49f:resources/views/user/index.blade.php
 <hr>
 @foreach ($datauser as $data)
   <a href="user/{{$data->id}}">

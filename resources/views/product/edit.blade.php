@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <title>Edit Barang</title>
-<!-- <script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script> -->
+<script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
 <style>
 #model
 {
@@ -14,7 +14,7 @@ table {width:100%;}
 <body>
 <center><h1><u>FORMOLIR EDIT BARANG</u></h1></center>
 <div id="model">
-<!-- @if (count($errors) > 0)
+@if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -22,7 +22,7 @@ table {width:100%;}
             @endforeach
         </ul>
     </div>
-@endif -->
+@endif
 <div class="alert alert-danger" style="display:none; background-color:red; color:white;"></div>
 <div class="alert alert-success" style="display:none;"></div>
 <form class="formproduct" action="/product/{{$product->id}}" method="post">
@@ -81,7 +81,7 @@ table {width:100%;}
 </form>
 </div>
 </body>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
  $.ajaxSetup({
   headers: {
    'X-CSRF-TOKEN': $('input[name="_token"]').val()
@@ -95,7 +95,7 @@ table {width:100%;}
       event.preventDefault();
       var data = $('.formproduct').serializeArray();
       $.ajax({
-        url : "{{url('formproduct/ajax_validate')}}",
+        url : "{{url('product/validasi_edit')}}",
         method : 'POST',
         data : data,
         success : function(response) {
@@ -112,7 +112,7 @@ table {width:100%;}
             $('.alert-danger').html(html_error);
             $('.alert-danger').show();
           } else {
-            $('.alert-success').html('Validasi sudah berhasil');
+            $('.alert-success').html('Edit sudah berhasil');
             $('.alert-success').show();
           }
         }
@@ -120,5 +120,5 @@ table {width:100%;}
     });
 
   });
-</script> -->
+</script>
 </html>
