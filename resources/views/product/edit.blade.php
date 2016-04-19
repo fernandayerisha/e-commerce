@@ -25,7 +25,7 @@ table {width:100%;}
 @endif
 <div class="alert alert-danger" style="display:none; background-color:red; color:white;"></div>
 <div class="alert alert-success" style="display:none;"></div>
-<form class="formproduct" action="/product/{{$product->id}}" method="post">
+<form class="formproduct" action="{{ url('product/validasi_edit') }}/{{$product->id}}" method="post">
 	<table>
 	<tr>
 		<td>Nama Barang</td>
@@ -75,7 +75,7 @@ table {width:100%;}
   </tr>
 	<table>
 <br>
-<input type="hidden" name="_method" value="put">
+
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <input type="submit" value="Edit">
 </form>
@@ -95,7 +95,7 @@ table {width:100%;}
       event.preventDefault();
       var data = $('.formproduct').serializeArray();
       $.ajax({
-        url : "{{url('product/validasi_edit')}}",
+        url : $('.formproduct').attr('action'),
         method : 'POST',
         data : data,
         success : function(response) {

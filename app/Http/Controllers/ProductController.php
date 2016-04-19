@@ -96,12 +96,12 @@ class ProductController extends Controller
       }
     }
 
-    public function validasi_edit(Request $request)
+    public function validasi_edit(Request $request, $id)
     {
       $validasi = $this->validation($request);
       if ($validasi['status'] == 'success')
       {
-        $this->Update($request);
+        $this->update($request, $id);
       }else {
         return $validasi;
       }

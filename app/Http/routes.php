@@ -5,9 +5,10 @@ Route::get('/about', 'LatihanController@about');
 Route::get('/portofolio', 'LatihanController@portofolio');
 
 Route::post('product/validasi_create', 'ProductController@validasi_create');
-Route::post('product/validasi_edit', 'ProductController@validasi_edit');
+Route::post('product/validasi_edit/{id}', 'ProductController@validasi_edit');
 
 Route::resource('product', 'ProductController');
+
 Route::resource('user', 'MasterController');
 
 Route::post('user/do_create', 'MasterController@do_create');
