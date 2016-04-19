@@ -8,7 +8,6 @@
         border-collapse: collapse;
         width: 100%;
     }
->>>>>>> ae6e86f2fc72ad2c103195d1e046939c8f8fed55
 
     th, td {
         text-align: left;
@@ -25,7 +24,7 @@
 <body>
   <div class="container">
 
-    <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman Blog</h3>
+    <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman User</h3>
     {{ Session::get('message')}}
     <a href="/user/create"><h3>Create</h3></a>
 
