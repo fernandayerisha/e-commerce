@@ -1,8 +1,9 @@
+<!DOCTYPE HTML>
 <html>
 <head>
-  <script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
-  <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
-  <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
+  @extends('master')
+  @section('content')
+  <title>List User</title>
   <style>
     table {
         border-collapse: collapse;
@@ -41,7 +42,7 @@
       left: 0px;
     }
   </style>
-<head>
+</head>
 <body>
   <div class="overlay"><span>Mohon Tunggu Sebentar...</span></div>
   <div class="container">
@@ -189,4 +190,5 @@ function get_data_table() {
   });
 }
 </script>
+@stop
 </html>

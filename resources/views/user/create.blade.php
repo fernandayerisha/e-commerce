@@ -1,20 +1,55 @@
 <!DOCTYPE html>
 <html>
-<script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
-<body>
-<h3 align="center" style="font-size:30px;">Ini Page Create User</h3>
-<div class="alert-ajax"></div>
-<form class="formadd"  action="/user" method="post">
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
-  Nama : <input type="text" name="nama" value="" placeholder="Nama"></br>
-  <!-- {{ ($errors->has('nama')) ? $errors->first('nama') : '' }}<br> -->
-  E-mail : <input type="text" name="email" value="" placeholder="E-mail"></br>
-  <!-- {{ ($errors->has('email')) ? $errors->first('email') : '' }}<br> -->
-  Password : <input type="password" name="password" value="" placeholder="Password..."></br>
-  <!-- {{ ($errors->has('password')) ? $errors->first('password') : '' }}<br> -->
-  <input type="submit" value="Submit">
-</form>
+@extends('master')
+@section('content')
+<head>
+  <title>Create New User</title>
+  <style>
+    .formcolor{
+      font-size:30px;
+      background-color:#4CAF50;
+      color:white;
+      padding:10px;
+    }
+    .formadd{
+      background-color:#f5f5f5;
+      padding: 20px;
+    }
 
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <h3 class="formcolor" align="center" style="font-size:30px;">Ini Page Create User</h3>
+  </div>
+  <div class="container-fluid">
+    <form class="formadd"  action="/user" method="post">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <table>
+        <tbody>
+        <tr>
+          <td>Nama</td>
+          <td>:</td>
+          <td><input type="text" name="nama" value="" placeholder="Nama"></td>
+        </tr>
+        <tr>
+          <td>E-mail </td>
+          <td>:</td>
+          <td><input type="text" name="email" value="" placeholder="E-mail"></td>
+        </tr>
+        <tr>
+          <td>Password </td>
+          <td>:</td>
+          <td><input type="password" name="password" value="" placeholder="Password..."></td>
+        </tr>
+        </tbody>
+      </table>
+      <br>
+      <input type="submit" value="Submit">
+      <a href="{{url('user')}}"><input type="button" value="Back"></a>
+    </form>
+    <p class="alert-ajax"></p>
+  </div>
 </body>
 
 <script type="text/javascript">
@@ -55,5 +90,5 @@
 
   });
 </script>
-
+@stop
 </html>
