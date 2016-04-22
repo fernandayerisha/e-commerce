@@ -12,13 +12,11 @@ class MainControler extends Controller
       return view('welcome');
     }
 
-    public function single($id){
-      $blogs = Blog::all();
-      return view('blog.index', ['blogs' => $blogs]);
+    public function about(){
+      return view('about');
     }
 
     public function portofolio(){
-      $datas=['html','css','php'];
-      return view('portofolio')->with('data',$datas);
+      return view('portofolio');
     }
 }

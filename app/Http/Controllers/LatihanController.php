@@ -12,11 +12,4 @@ class LatihanController extends Controller
       return view('latihanhome');
     }
 
-    public function about(){
-      return view('latihanabout');
-    }
-    
-    public function portofolio(){
-      return view('portofolio');
-    }
 }
