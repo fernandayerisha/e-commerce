@@ -85,30 +85,7 @@
     </table>
     <hr>
     {{ $datauser->links() }}
-    <input type="hidden" name="active_page" value="{{$datauser->currentPage()}}" >
-    <script>
-    function delData2(){
-      var r = confirm("Apa anda yakin akan menghapus data?");
-      if (r == true) {
-            var data = $('.delForm{{$data->id}}').serializeArray();
-            $.ajax({
-              url : "{{url('user/do_delete')}}",
-              method : 'POST',
-              data : data,
-              success : function(response) {
-                if (response.status == 'error') {
-                  alert('Delete Error');
-                } else {
-                  alert('Delete Success!!');
-                }
-              }
-            });
-      } else {
-        alert('Delete Canceled!');
-      }
-    };
-
-    </script>
+    <input type="hidden" name="active_page" value="{{$datauser->currentPage()}}">
   </div>
 </body>
 

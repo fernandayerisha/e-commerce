@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
-@extends('master')
-@section('content')
 <head>
+  @extends('master')
+  @section('content')
   <title>Edit User</title>
   <style>
     .formcolor{

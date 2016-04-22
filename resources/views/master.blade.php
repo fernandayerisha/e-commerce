@@ -25,7 +25,7 @@
                     <ul class="dropdown-menu">
                       <li><a href="{{url('user')}}">User</a></li>
                       <li><a href="{{url('product')}}">Product</a></li>
-                      <li><a href="{{url('seller')}}">Seller</a></li>
+                      <li><a href="{{url('toko')}}">Seller</a></li>
                       <li role="separator" class="divider"></li>
                       <li class="dropdown-header">Another</li>
                       <li><a href="#">Another Link (1)</a></li>
@@ -39,8 +39,35 @@
         </div>
       </div>
     @yield('content')
-  <footer>
-    <div class="container" align="center">
-      <h1> This is Footer</h1>
+  <footer class="footer">
+    <div class="container-fluid" id="footer">
+      <h1 align="center"> This is Footer</h1>
+      <div class="container">
+        <div class="col-md-4">
+          <h3>This is Footer tab 1</h3>
+          <p>
+            Contact @EaEaEa<br>
+            Address Mangan @ti<br>
+            Website ManganATi.com<br>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3>This is Footer tab 2</h3>
+          <p>Ngomong Kuro</p>
+        </div>
+        <div class="col-md-4">
+          <h3>This is Footer tab 3</h3>
+          <p>Ngomong Kuro</p>
+        </div>
+      </div>
+
     </div>
   </footer>
+<style>
+  .footer{
+    height: auto;
+    background-color: #2c3e50;
+    padding-bottom: 30px;
+    color: #FFF;
+  }
+</style>
