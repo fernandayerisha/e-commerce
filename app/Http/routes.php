@@ -11,6 +11,8 @@ Route::resource('product', 'ProductController');
 
 Route::resource('user', 'MasterController');
 
+Route::resource('toko', 'TokoController');
+
 Route::post('user/do_create', 'MasterController@do_create');
 Route::post('user/do_delete', 'MasterController@do_delete');
 Route::post('user/get_data_table', 'MasterController@get_data_table');
