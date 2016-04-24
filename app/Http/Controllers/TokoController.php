@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 use App\Toko;
 use App\Http\Requests;
@@ -44,7 +45,7 @@ class TokoController extends Controller
             'nama_toko'   => 'required|max:30|min:5',
             'slogan'      => 'required',
             'deskripsi'   => 'required',
-            // 'alamat'      => 'required',
+            'alamat'      => 'required',
         ]);
       // /VALIDASI
       // INSERT INTO DB
@@ -85,7 +86,7 @@ class TokoController extends Controller
     public function edit($id)
     {
       $toko = Toko::find($id);
-      return view('toko.edit')->with('toko', $toko);
+      return view('toko.edit', array('toko' => $toko));
     }
 
     /**
@@ -98,12 +99,12 @@ class TokoController extends Controller
     public function update(Request $request, $id)
     {
       // VALIDASI
-        $this->validate($request, [
-            'nama_toko'   => 'required|max:30|min:5',
-            'slogan'      => 'required',
-            'deskripsi'   => 'required',
-            // 'alamat'      => 'required',
-        ]);
+        // $this->validate($request, [
+        //     'nama_toko'   => 'required|max:30|min:5',
+        //     'slogan'      => 'required',
+        //     'deskripsi'   => 'required',
+        //     // 'alamat'      => 'required',
+        // ]);
       // /VALIDASI
       // INSERT INTO DB
         $toko = Toko::find($id);
@@ -113,7 +114,7 @@ class TokoController extends Controller
             $toko->alamat     = $request->alamat;
         $toko->save();
       // /INSERT INTO DB
-        return redirect('toko')->with('notifikasi', 'Toko Berhasil Diubah'); //notifikasi
+        // return redirect('toko')->with('notifikasi', 'Toko Berhasil Diubah'); //notifikasi
     }
 
     /**
@@ -124,10 +125,60 @@ class TokoController extends Controller
      */
     public function destroy($id)
     {
-      {
         $toko = Toko::find($id);
         $toko->delete();
         return redirect('toko')->with('notifikasi', 'Toko Dihapus!');
-      }
+    }
+
+    //FUNGSI VALIDASI MENGGUNAKAN AJAX
+    public function validation(Request $request)
+    {
+        $return = array();
+
+        $rules = array(
+            'nama_toko'   => 'required|max:30|min:5',
+            'slogan'      => 'required',
+            'deskripsi'   => 'required',
+            'alamat'      => 'required',
+            '_token'      => 'required',
+        );
+        $messages = array(
+            'required'  => 'Kolom ini harus diisi.',
+        );
+
+        $validator  = Validator::make($request->all(), $rules, $messages);
+
+        if (!$validator->fails()){
+          $return['status'] = 'success';
+        } 
+        else {
+          $return['status'] = 'error';
+          $return['message'] = $validator->messages();
+        }
+
+        return $return;
+    }
+
+    public function validasi_create(Request $request)
+    {
+        $validasi = $this->validation($request);
+        if ($validasi['status'] == 'success')
+        {
+            $this->store($request);
+        }
+        else {
+            return $validasi;
+        }
+    }
+    public function validasi_edit(Request $request, $id)
+    {
+        $validasi = $this->validation($request);
+        if ($validasi['status'] == 'success')
+        {
+            $this->update($request, $id);
+        }
+        else {
+            return $validasi;
+        }
     }
 }
