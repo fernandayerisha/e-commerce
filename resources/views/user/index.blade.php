@@ -1,8 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  @extends('master')
-  @section('content')
+@extends('master')
+@section('head')
   <title>List User</title>
   <style>
     table {
@@ -42,15 +39,17 @@
       left: 0px;
     }
   </style>
-</head>
-<body>
+@stop
+
+@section('content')
   <div class="overlay"><span>Mohon Tunggu Sebentar...</span></div>
   <div class="container">
 
     <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman User</h3>
     {{ Session::get('message')}}
-    <a href="/user/create"><button>Create</button></a>
-
+    {{ $datauser->links() }}<br>
+    <a href="/user/create" class="btn-info btn-lg">Create New User</a>
+    <input type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" value="demo edit" >
     <hr>
     <table id="example" class="display" cellspacing="0" width="80%">
       <thead>
@@ -69,25 +68,24 @@
           <td>{{ $data->email }}</td>
           <td>
             <form class="delForm{{$data->id}}" id="{{$data->id}}" action="/user/{{$data->id}}" method="post">
-              <a href="user/{{$data->id}}"><input type="button" value="Detail"></a>
-              <a href="user/{{$data->id}}/edit"><input type="button" value="Edit"></a>
+              <a href="user/{{$data->id}}"><input type="button" class="btn-info btn-sm" value="Detail"></a>
+              <a href="user/modal_edit/{{$data->id}}"><input type="button" class="btn-default btn-sm" value="Edit"></a>
 
               <input type="hidden" name="id_delete" value="{{$data->id}}">
               <input type="hidden" name="_method" value="delete">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <!-- <input type="submit" value="Delete" onClick="alertDelete{{$data->id}}()"> -->
-              <input type="button" value="Delete" onClick="delData({{$data->id}})">
+              <a href="#"><input class="btn-danger btn-sm" type="button" value="Delete" onClick="delData({{$data->id}})"></a>
             </form>
           </td>
         </tr>
     @endforeach
       </tfoot>
-    </table>
+    </table><br>
     <hr>
     {{ $datauser->links() }}
     <input type="hidden" name="active_page" value="{{$datauser->currentPage()}}">
   </div>
-</body>
 
 <script type="text/javascript">
  $.ajaxSetup({
@@ -97,20 +95,11 @@
  });
 </script>
 <script>
-// function alertDelete{{$data->id}}(){
-//   var r = confirm("Apa anda yakin akan menghapus data?");
-//   if (r == true){
-//     alert('Delete Success!!');
-//     document.getElementById('{{$data->id}}').submit();
-//   }else{
-//     alert('Delete Canceled!!');
-//   }
-// }
 
 function delData(id_delete){
   var r = confirm("Apa anda yakin akan menghapus data?");
   if (r == true){
-    $('.overlay').fadeIn(100, function(){
+    $('.overlay').fadeIn(200, function(){
       $.ajax({
         url     : "{{url('user/do_delete')}}",
         method  : 'POST',
@@ -134,7 +123,8 @@ function delData(id_delete){
 }
 
 function get_data_table() {
-  var url = "{{url('user')}}" + "?page=" + $('input[name="active_page"]').val();
+  var page = $('input[name="active_page"]').val();
+  var url = "{{url('user')}}" + "?page=" + page;
   $.ajax({
     url     : url,
     method  : 'GET',
@@ -168,4 +158,3 @@ function get_data_table() {
 }
 </script>
 @stop
-</html>

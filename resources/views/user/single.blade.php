@@ -1,8 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  @extends('master')
-  @section('content')
+@extends('master')
+@section('head')
   <title>List User</title>
   <style>
     table {
@@ -21,8 +18,8 @@
 
     tr:nth-child(even){background-color: #f5f5f5}
   </style>
-</head>
-<body>
+@stop
+@section('content')
   <div class="container">
     <table align="center">
       <thead>
@@ -44,12 +41,15 @@
           <td><b>:</b></td>
           <td><span> {{ $data->email }}</span></td>
         </tr>
+        <tr>
+          <td>Action</td>
+          <td><b>:</b></td>
+          <td>
+            <a href="{{$data->id}}/edit" class="btn-default btn-sm" >Edit</a>
+            <a href="{{url('user')}}" class="btn-primary btn-sm" >Back to List</a>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <div class="container" align="center">
-      <a href="{{$data->id}}/edit"><input type="button" value="Edit"></a>
-    </div>
-  </div>
-</body>
+  </div><br>
 @stop
-</html>
