@@ -14,7 +14,7 @@ table {width:100%;}
 <body>
 <center><h1><u>FORMOLIR PENAMBAHAN BARANG</u></h1></center>
 <div id="model">
-@if (count($errors) > 0)
+<!-- @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -22,7 +22,7 @@ table {width:100%;}
             @endforeach
         </ul>
     </div>
-@endif
+@endif -->
 <div class="alert alert-danger" style="display:none; background-color:red; color:white;"></div>
 <div class="alert alert-success" style="display:none;"></div>
 <form class="formproduct" action="/product" method="post">
@@ -46,8 +46,8 @@ table {width:100%;}
     <td>Kategori</td>
     <td>:</td>
     <td>
-        <select name="sKategori">
-					<option value="">Pilih kategori</option>
+        <select name="Kategori">
+					<option value="">Pilih Kategori</option>
           @foreach ($cat as $data)
 		      <option value="{{$data->id_category}}">{{$data->nama_kategori}}</option>
           @endforeach
@@ -59,10 +59,10 @@ table {width:100%;}
     <td>Nama Toko</td>
     <td>:</td>
     <td>
-        <select name="sToko">
-					<option value="">Pilih nama toko</option>
-          @foreach ($seller as $data)
-		      <option value="{{$data->id_seller}}">{{$data->nama}}</option>
+        <select name="Toko">
+					<option value="">Pilih Nama Toko</option>
+          @foreach ($toko as $data)
+		      <option value="{{$data->id}}">{{$data->nama_toko}}</option>
           @endforeach
         </select><br>
     </td>

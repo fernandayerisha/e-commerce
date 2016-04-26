@@ -12,12 +12,14 @@ class CreateTableToko extends Migration
      */
     public function up()
     {
-        Schema::create('sellers', function (Blueprint $table) {
-            $table->increments('id_seller');
-            $table->string('nama');
-            $table->string('contact');
-            $table->timestamps();
-        });
+      Schema::create('toko', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('nama_toko');
+          $table->string('slogan');
+          $table->string('deskripsi');
+          $table->string('alamat');
+          $table->timestamps();
+      });
     }
 
     /**
@@ -27,6 +29,6 @@ class CreateTableToko extends Migration
      */
     public function down()
     {
-        Schema::drop('sellers');
+        Schema::drop('toko');
     }
 }

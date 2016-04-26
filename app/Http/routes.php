@@ -4,13 +4,18 @@ Route::get('/', 'MainControler@index');
 Route::get('/about', 'MainControler@about');
 Route::get('/portofolio', 'MainControler@portofolio');
 
-//validate product
-Route::post('product/validasi_create', 'ProductController@validasi_create');
-Route::post('product/validasi_edit/{id}', 'ProductController@validasi_edit');
-
 //resource restfull
 Route::resource('product', 'ProductController');
 Route::resource('user', 'MasterController');
+Route::resource('toko', 'TokoController');
+
+//validate toko
+Route::post('toko/validasi_create', 'TokoController@validasi_create');
+Route::post('toko/validasi_edit/{id}', 'TokoController@validasi_edit');
+
+//validate product
+Route::post('product/validasi_create', 'ProductController@validasi_create');
+Route::post('product/validasi_edit/{id}', 'ProductController@validasi_edit');
 
 //validate user
 Route::post('user/do_create', 'MasterController@do_create');

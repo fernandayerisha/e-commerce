@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sellers;
+use App\Toko;
 use App\Categoryku;
 use Validator;
 
@@ -35,8 +35,8 @@ class ProductController extends Controller
         // return view('product.formproduct');
 
         $categorys = Categoryku::all();
-        $sellers = Sellers::all();
-        return view('product.formproduct', ['cat' => $categorys], ['seller' => $sellers] );
+        $toko = Toko::all();
+        return view('product.formproduct', ['cat' => $categorys], ['toko' => $toko] );
 
     }
 
@@ -52,8 +52,8 @@ class ProductController extends Controller
         $product = new Product;
         $product->nama_product = $request->nama;
         $product->harga = $request->harga;
-        $product->id_category = $request->sKategori;
-        $product->id_seller = $request->sToko;
+        $product->id_category = $request->Kategori;
+        $product->id_toko = $request->Toko;
         $product->save();
     }
 
@@ -117,7 +117,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $category = Categoryku::all();
-        $sellers = Sellers::all();
+        $toko = Toko::all();
 
         if(!$product)
         {
@@ -128,7 +128,7 @@ class ProductController extends Controller
         return view('product.detail', array(
           'cat' => $category,
           'product' => $product,
-          'seller' => $sellers
+          'toko' => $toko
         ));
     }
 
@@ -144,7 +144,7 @@ class ProductController extends Controller
       $product = Product::find($id);
       // $category = Categoryku::where('id_category',$product->id_category)->get();
       $category = Categoryku::all();
-      $sellers = Sellers::all();
+      $toko = Toko::all();
 
         if(!$product)
         {
@@ -154,7 +154,7 @@ class ProductController extends Controller
       return view('product.edit', array(
         'cat' => $category,
         'product' => $product,
-        'seller' => $sellers
+        'toko' => $toko
       ));
 
     }
@@ -171,8 +171,8 @@ class ProductController extends Controller
           $product = Product::find($id);
           $product->nama_product = $request->nama;
           $product->harga = $request->harga;
-          $product->id_category = $request->sKategori;
-          $product->id_seller = $request->sToko;
+          $product->id_category = $request->Kategori;
+          $product->id_toko = $request->Toko;
           $product->save();
     }
 
