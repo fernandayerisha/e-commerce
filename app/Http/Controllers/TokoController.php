@@ -18,8 +18,8 @@ class TokoController extends Controller
      */
     public function index()
     {
-        $tokos = Toko::paginate(5);
-        return view('toko.index', ['tokos' => $tokos]);
+        $toko = Toko::paginate(10);
+        return view('toko.index', ['toko' => $toko]);
     }
 
     /**
@@ -96,7 +96,7 @@ class TokoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
       // VALIDASI
         // $this->validate($request, [
@@ -107,7 +107,7 @@ class TokoController extends Controller
         // ]);
       // /VALIDASI
       // INSERT INTO DB
-        $toko = Toko::find($id);
+        $toko = Toko::find($request->id);
             $toko->nama_toko  = $request->nama_toko;
             $toko->slogan     = $request->slogan;
             $toko->deskripsi  = $request->deskripsi;
@@ -150,7 +150,7 @@ class TokoController extends Controller
 
         if (!$validator->fails()){
           $return['status'] = 'success';
-        } 
+        }
         else {
           $return['status'] = 'error';
           $return['message'] = $validator->messages();
@@ -170,15 +170,25 @@ class TokoController extends Controller
             return $validasi;
         }
     }
-    public function validasi_edit(Request $request, $id)
+    public function validasi_edit(Request $request)
     {
         $validasi = $this->validation($request);
         if ($validasi['status'] == 'success')
         {
-            $this->update($request, $id);
+            $this->update($request);
         }
         else {
             return $validasi;
         }
+    }
+    public function validasi_delete(Request $request){
+      $id = $request->id;
+      if(empty($id)){
+        $return['status'] = 'error';
+      }else{
+        Toko::destroy($id);
+        $return['status'] = 'success';
+      }
+      return $return;
     }
 }

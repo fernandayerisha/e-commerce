@@ -38,9 +38,9 @@
     </body>
     <script type="text/javascript">
         $.ajaxSetup({
-        headers: {
-        'X-CSRF-TOKEN': $('input[name="_token"]').val()
-        }
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
         });
     </script>
     <script type="text/javascript">
@@ -65,7 +65,7 @@
                             html_error += '</ul>';
                             $('.alert-danger').html(html_error);
                             $('.alert-danger').show();
-                        } 
+                        }
                         else {
                             $('.alert-success').html('Product sudah berhasil ditambahkan');
                             $('.alert-success').show();

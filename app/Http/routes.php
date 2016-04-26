@@ -11,7 +11,8 @@ Route::resource('toko', 'TokoController');
 
 //validate toko
 Route::post('toko/validasi_create', 'TokoController@validasi_create');
-Route::post('toko/validasi_edit/{id}', 'TokoController@validasi_edit');
+Route::post('toko/validasi_edit', 'TokoController@validasi_edit');
+Route::post('toko/validasi_delete', 'TokoController@validasi_delete');
 
 //validate product
 Route::post('product/validasi_create', 'ProductController@validasi_create');

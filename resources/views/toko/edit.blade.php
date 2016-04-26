@@ -17,10 +17,12 @@
                 </ul>
             </div>
         @endif -->
+        <div class="alert alert-danger" style="display:none; color:red;"></div>
+        <div class="alert alert-success" style="display:none;"></div>
       <!-- /VALIDASI -->
         <b>Isi Informasi Toko</b>
       <!-- FORM -->
-        <form class="edittoko" action="{{ url('toko/validasi_edit') }}/{{$toko->id}}" method="post">
+        <form class="createtoko" action="{{ url('toko/validasi_edit') }}" method="post">
             <input type="text" name="nama_toko" value="{{$toko->nama_toko}}" placeholder="Nama Toko">
             <br>
             <input type="text" name="slogan" value="{{$toko->slogan}}" placeholder="Slogan Toko">
@@ -30,7 +32,8 @@
             <textarea name="alamat" rows="8" cols="40" placeholder="Alamat Asal Pengiriman">{{$toko->alamat}}</textarea>
             <br>
 
-            <!-- <input type="hidden" name="_method" value="put"> -->            
+            <!-- <input type="hidden" name="_method" value="put"> -->
+            <input type="hidden" name="id" value="{{ $toko->id }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"><br>
             <input type="submit" name="submit" value="UBAH">
         </form>
@@ -45,9 +48,9 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('.edittoko').submit(function(event){
+            $('.createtoko').submit(function(event){
                 event.preventDefault();
-                var data = $('.edittoko').serializeArray();
+                var data = $('.createtoko').serializeArray();
                 $.ajax({
                     url : "{{url('toko/validasi_edit')}}",
                     method : 'POST',
@@ -65,9 +68,9 @@
                             html_error += '</ul>';
                             $('.alert-danger').html(html_error);
                             $('.alert-danger').show();
-                        } 
+                        }
                         else {
-                            $('.alert-success').html('Product sudah berhasil ditambahkan');
+                            $('.alert-success').html('Toko Sudah Diedit');
                             $('.alert-success').show();
                         }
                     }
