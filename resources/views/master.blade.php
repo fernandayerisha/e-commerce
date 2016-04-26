@@ -1,7 +1,23 @@
-<script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
-<script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
-<link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
+  <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
+  <style>
+    .footer{
+      height: auto;
+      background-color: #2c3e50;
+      padding-bottom: 30px;
+      color: #FFF;
+    }
+  </style>
+  @yield('head')
+</head>
 <!-- end of style | start of navbar -->
+<body>
       <div class="navbar-wrapper">
         <div class="container-fluid">
           <nav class="navbar navbar-inverse navbar-static-top">
@@ -39,6 +55,8 @@
         </div>
       </div>
     @yield('content')
+
+  <!-- this is footer -->
   <footer class="footer">
     <div class="container-fluid" id="footer">
       <h1 align="center"> This is Footer</h1>
@@ -63,11 +81,4 @@
 
     </div>
   </footer>
-<style>
-  .footer{
-    height: auto;
-    background-color: #2c3e50;
-    padding-bottom: 30px;
-    color: #FFF;
-  }
-</style>
+</body>
