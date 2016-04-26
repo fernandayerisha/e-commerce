@@ -27,4 +27,5 @@ Route::group(['prefix' => 'create'], function(){
   Route::post('valitade', 'MasterController@ajax_validate');
 });
 
-Route::post('user/modal_edit/{id}', 'MasterController@modal_edit');
+Route::post('user/modal_detail', 'MasterController@modal_detail');
+Route::post('user/modal_edit', 'MasterController@modal_edit');

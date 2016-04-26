@@ -187,11 +187,18 @@ class MasterController extends Controller
         return $return;
     }
 
-    public function modal_edit($id){
+    public function modal_detail(Request $request){
 
-      $dataku = User::find($id);
+      $dataku = User::find($request->id);
 
-      return view('user.edit_modal')->with('data_edit', $dataku);
+      return view('user.modal_detail')->with('data', $dataku);
+    }
+
+    public function modal_edit(Request $request){
+
+      $dataku = User::find($request->id);
+
+      return view('user.modal_edit')->with('data', $dataku);
     }
 
     //END OF MASTER CONTROLER

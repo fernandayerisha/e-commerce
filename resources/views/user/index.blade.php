@@ -48,8 +48,7 @@
     <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman User</h3>
     {{ Session::get('message')}}
     {{ $datauser->links() }}<br>
-    <a href="/user/create" class="btn-info btn-lg">Create New User</a>
-    <input type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" value="demo edit" >
+    <a href="/user/create"><input type="button" value="Create New User" class="btn-info btn-lg"/></a>
     <hr>
     <table id="example" class="display" cellspacing="0" width="80%">
       <thead>
@@ -68,14 +67,14 @@
           <td>{{ $data->email }}</td>
           <td>
             <form class="delForm{{$data->id}}" id="{{$data->id}}" action="/user/{{$data->id}}" method="post">
-              <a href="user/{{$data->id}}"><input type="button" class="btn-info btn-sm" value="Detail"></a>
-              <a href="user/modal_edit/{{$data->id}}"><input type="button" class="btn-default btn-sm" value="Edit"></a>
+              <a onClick="modalDetailTriger({{$data->id}})"><input type="button" class="btn-info btn-sm" value="Detail"></a>
+              <a onClick="modalEditTriger({{$data->id}})"><input type="button" class="btn-success btn-sm" value="Edit"></a>
+              <a href="" class="modaltrig" data-id="{{$data->id}}"><input type="button" class="btn-info btn-sm" value="Detail"></a>
 
               <input type="hidden" name="id_delete" value="{{$data->id}}">
               <input type="hidden" name="_method" value="delete">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <!-- <input type="submit" value="Delete" onClick="alertDelete{{$data->id}}()"> -->
-              <a href="#"><input class="btn-danger btn-sm" type="button" value="Delete" onClick="delData({{$data->id}})"></a>
+              <input class="btn-danger btn-sm" type="button" value="Delete" onClick="delData({{$data->id}})">
             </form>
           </td>
         </tr>
@@ -86,7 +85,7 @@
     {{ $datauser->links() }}
     <input type="hidden" name="active_page" value="{{$datauser->currentPage()}}">
   </div>
-
+<div class="modalKu"></div>
 <script type="text/javascript">
  $.ajaxSetup({
   headers: {
@@ -135,24 +134,75 @@ function get_data_table() {
       $.each(response.data, function(key, value){
 
         table_content_html += '<tr>';
-          table_content_html += '<td>'+ this.id +'</td>';
-          table_content_html += '<td>'+ this.nama +'</td>';
-          table_content_html += '<td>'+ this.email +'</td>';
+          table_content_html += '<td>'+this.id+'</td>';
+          table_content_html += '<td>'+this.nama+'</td>';
+          table_content_html += '<td>'+this.email+'</td>';
           table_content_html += '<td>';
             table_content_html += '<form class="delForm'+this.id+'" id="'+this.id+'" action="/user/'+this.id+'" method="post">';
-              table_content_html += '<a href="user/'+this.id+'"><input type="button" value="Detail"></a>';
-              table_content_html += '<a href="user/'+this.id+'/edit"><input type="button" value="Edit"></a>';
+              table_content_html += '<a onClick="modalDetailTriger('+this.id+')"><input type="button" class="btn-info btn-sm" value="Detail"></a>';
+              table_content_html += '<a onClick="modalEditTriger('+this.id+')"><input type="button" class="btn-success btn-sm" value="Edit"></a>';
+              table_content_html += '<a href="" class="modaltrig" data-id="'+this.id+'"><input type="button" class="btn-info btn-sm" value="Detail"></a>';
 
               table_content_html += '<input type="hidden" name="id_delete" value="'+this.id+'">';
               table_content_html += '<input type="hidden" name="_method" value="delete">';
-
-              table_content_html += '<input type="button" value="Delete" onClick="delData('+this.id+')">';
+              table_content_html += '<input type="hidden" name="_token" value="{{ csrf_token() }}">';
+              table_content_html += '<a href="#"><input class="btn-danger btn-sm" type="button" value="Delete" onClick="delData('+this.id+')"></a>';
             table_content_html += '</form>';
           table_content_html += '</td>';
         table_content_html += '</tr>';
       });
       $('.table_content').html(table_content_html);
       $('.overlay').fadeOut(100);
+    }
+  });
+}
+
+// Modal Detail1
+function modalDetailTriger(id){
+  $.ajax({
+    url     : "{{url('user/modal_detail')}}",
+    method  : 'POST',
+    data    : {
+      'id' : id
+    },
+    success : function(response){
+      console.log(response);
+      $('.modalKu').html(response);
+      $('#myModal').modal('show');
+    }
+  });
+}
+
+// ModalDetail2
+$('.modaltrig').click(function(event){
+  event.preventDefault();
+  var id = $(this).attr('data-id');
+  $.ajax({
+    url     : "{{url('user/modal_detail')}}",
+    method  : 'POST',
+    data    : {
+      'id' : id
+    },
+    success : function(response){
+      console.log(response);
+      $('.modalKu').html(response);
+      $('#myModal').modal('show');
+    }
+  });
+});
+
+// Modal Edit
+function modalEditTriger(id){
+  $.ajax({
+    url     : "{{url('user/modal_edit')}}",
+    method  : 'POST',
+    data    : {
+      'id' : id
+    },
+    success : function(response){
+      console.log(response);
+      $('.modalKu').html(response);
+      $('#myModal').modal('show');
     }
   });
 }
