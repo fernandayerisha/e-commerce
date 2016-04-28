@@ -10,12 +10,21 @@
     .footer{
       height: auto;
       background-color: #2c3e50;
-      padding-bottom: 30px;
+      padding-bottom: 20px;
       color: #FFF;
+      position: relative;;
+      bottom: 0;
+      width: 100%;
+
     }
-    .container-fluid {
-      padding: 0;
+    html {
+      position: relative;
+      min-height: 100%;
     }
+    body {
+      /* Margin bottom by footer height */
+      margin-bottom: 60px;
+      }
   </style>
   @yield('head')
 </head>
@@ -42,15 +51,38 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="{{url('user')}}">User</a></li>
+                      @if (Auth::guest())
+                      <li><a href="{{url('admin/user')}}">User</a></li>
                       <li><a href="{{url('product')}}">Product</a></li>
-                      <li><a href="{{url('toko')}}">Toko</a></li>
+                      <li><a href="{{url('admin/toko')}}">Seller</a></li>
+                      @else
+                      <li><a href="{{url('admin/user')}}">User</a></li>
+                      <li><a href="{{url('admin/product')}}">Product</a></li>
+                      <li><a href="{{url('admin/toko')}}">Seller</a></li>
+                      @endif
                       <li role="separator" class="divider"></li>
                       <li class="dropdown-header">Another</li>
                       <li><a href="#">Another Link (1)</a></li>
                       <li><a href="#">Another Link (2)</a></li>
                     </ul>
                   </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
               </div>
             </div>

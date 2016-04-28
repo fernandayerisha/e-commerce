@@ -22,6 +22,10 @@ return array(
     'Canvas_Factory' => $vendorDir . '/dompdf/dompdf/include/canvas_factory.cls.php',
     'Cellmap' => $vendorDir . '/dompdf/dompdf/include/cellmap.cls.php',
     'CreateFkProduct' => $baseDir . '/database/migrations/2016_04_07_050720_create_fk_product.php',
+<<<<<<< HEAD
+    'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2016_04_28_033200_create_password_resets_table.php',
+=======
+>>>>>>> fdbe51d36522e3090f5a39549a4a9c65a53e02a6
     'CreateTabelTransaksi' => $baseDir . '/database/migrations/2016_04_06_033124_create_tabel_transaksi.php',
     'CreateTableCategory' => $baseDir . '/database/migrations/2016_04_07_045703_create_table_category.php',
     'CreateTableProduct' => $baseDir . '/database/migrations/2016_04_06_030530_create_table_product.php',
@@ -31,7 +35,10 @@ return array(
     'DOMPDF_Exception' => $vendorDir . '/dompdf/dompdf/include/dompdf_exception.cls.php',
     'DOMPDF_Image_Exception' => $vendorDir . '/dompdf/dompdf/include/dompdf_image_exception.cls.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+<<<<<<< HEAD
+=======
     'Dropfkproduct' => $baseDir . '/database/migrations/2016_04_27_044905_dropfkproduct.php',
+>>>>>>> fdbe51d36522e3090f5a39549a4a9c65a53e02a6
     'Encoding_Map' => $vendorDir . '/phenx/php-font-lib/classes/Encoding_Map.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
