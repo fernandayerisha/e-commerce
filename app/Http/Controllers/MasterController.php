@@ -116,7 +116,7 @@ class MasterController extends Controller
       if ($validasi['status'] == 'success')
       {
         $this->update($request, $id);
-      }else {
+      }else{
         return $validasi;
       }
     }

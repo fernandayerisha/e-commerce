@@ -6,7 +6,6 @@
         border-collapse: collapse;
         width: 100%;
     }
-
     th, td {
         text-align: left;
         padding: 8px;
@@ -15,7 +14,6 @@
       background-color: #4CAF50;
       color: white;
     }
-
     tr:nth-child(even){background-color: #f5f5f5}
   </style>
   <style>
@@ -94,7 +92,7 @@
  });
 </script>
 <script>
-
+// ajax untuk delete data
 function delData(id_delete){
   var r = confirm("Apa anda yakin akan menghapus data?");
   if (r == true){
@@ -120,7 +118,7 @@ function delData(id_delete){
     alert('Delete Canceled!');
   }
 }
-
+// ajax untuk refresh data di halaman
 function get_data_table() {
   var page = $('input[name="active_page"]').val();
   var url = "{{url('user')}}" + "?page=" + page;

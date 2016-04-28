@@ -6,7 +6,7 @@
   <title>Halaman E-Commerce | Portofolio</title>
   <style>
     .title{
-      background-color: #f5f5f5;
+      background-color: #bdc3c7;
       padding: 10px;
       font-size: 50px;
     }
