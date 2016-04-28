@@ -36,7 +36,6 @@ Route::group(['prefix' => 'admin'], function()
 });
 
 
-
 //validate product
 Route::post('product/validasi_create', 'ProductController@validasi_create');
 Route::post('product/validasi_edit/{id}', 'ProductController@validasi_edit');
