@@ -5,7 +5,7 @@
         @section('content')
         <meta charset="utf-8">
         <title>Buka Toko</title>
-        <link rel="stylesheet" href="{{ url('assets/css/style_toko.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/css/style_createtoko.css') }}">
     </head>
     <body>
         <div class="content">
