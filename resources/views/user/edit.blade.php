@@ -57,16 +57,13 @@
           <td>E-mail </td>
           <td>:</td>
           <td><input type="text" name="email" value="{{$data->email}}" placeholder="E-mail"></td>
-          <!-- {{ ($errors->has('email')) ? $errors->first('email') : '' }} -->
         </tr>
         <tr>
           <td>Password </td>
           <td>:</td>
           <td><input type="password" name="password" value="{{$data->password}}" placeholder="Password..."></td>
-          <!-- {{ ($errors->has('password')) ? $errors->first('password') : '' }} -->
         </tr>
         <tr>
-          <!-- <input type="hidden" name="_method"value="put"> -->
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </tr>
         </tbody>

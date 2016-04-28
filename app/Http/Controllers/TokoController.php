@@ -143,7 +143,7 @@ class TokoController extends Controller
             '_token'      => 'required',
         );
         $messages = array(
-            'required'  => 'Kolom ini harus diisi.',
+            'required'  => 'harus diisi',
         );
 
         $validator  = Validator::make($request->all(), $rules, $messages);

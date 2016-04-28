@@ -1,0 +1,79 @@
+/*ALERT*/
+
+.alert {
+  display: none;
+  margin: 25px 0 0;
+}
+
+.alert-danger {
+  color: red;
+}
+
+/*CREATE TOKO*/
+
+body {
+	margin:0;
+	padding:0;
+	/*background-color:#2c3e50;*/
+}
+
+.content {
+  width:35%;
+  margin-top:1%;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+.content h1 {
+	color:#2c3e50;
+	font-size:35px;
+	text-transform:uppercase;
+}
+
+.content p {
+	font-size:20px;
+	color:#2c3e50;
+	line-height:25px;
+}
+
+input {
+	padding:10px;
+	width:66%;
+	background-color:#2c3e50;
+	border:2px solid white;
+	color:white;
+	margin-top:5%;
+	text-align:center;
+	border-radius:5px;
+	outline:none;
+	font-size:20px;
+}
+
+input[type="submit"] {
+  background-color: white;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  border-color: #2c3e50;
+}
+
+textarea {
+	padding:10px;
+	width:66%;
+	background-color:#2c3e50;
+	border:2px solid white;
+	color:white;
+	margin-top:5%;
+	text-align:center;
+	border-radius:5px;
+	outline:none;
+	font-size:20px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}

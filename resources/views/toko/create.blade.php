@@ -1,40 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
+        @extends('master')
+        @section('content')
         <meta charset="utf-8">
         <title>Buka Toko</title>
-        <script src="{{ url('assets/js/jquery/jquery-2.2.0.min.js') }}"></script>
+        <link rel="stylesheet" href="{{ url('assets/css/style_toko.css') }}">
     </head>
     <body>
-        <h1>Buka Toko Baru</h1>
-      <!-- VALIDASI -->
-        <!-- @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif -->
-        <div class="alert alert-danger" style="display:none; color:red;"></div>
-        <div class="alert alert-success" style="display:none;"></div>
-      <!-- /VALIDASI -->
-        <b>Isi Informasi Toko</b>
-      <!-- FORM -->
-        <form class="createtoko" action="/toko" method="post">
-            <input type="text" name="nama_toko" value="" placeholder="Nama Toko">
-            <br>
-            <input type="text" name="slogan" value="" placeholder="Slogan Toko">
-            <br>
-            <textarea name="deskripsi" rows="8" cols="40" placeholder="Deskripsi Toko"></textarea>
-            <br>
-            <textarea name="alamat" rows="8" cols="40" placeholder="Alamat Asal Pengiriman"></textarea>
-            <br>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}"><br>
-            <input type="submit" name="submit" value="SIMPAN">
-        </form>
-      <!-- /FORM -->
+        <div class="content">
+            <h1>Buka Toko Baru</h1>
+            <p>Isi Informasi Toko</p>
+            <!-- FORM -->
+            <form class="createtoko" action="/toko" method="post">
+                <input type="text" name="nama_toko" value="" placeholder="NAMA TOKO">
+                <input type="text" name="slogan" value="" placeholder="SLOGAN">
+                <textarea name="deskripsi" rows="4" cols="40" placeholder="DESKRIPSI TOKO"></textarea>
+                <input type="text" name="alamat" value="" placeholder="ALAMAT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"><br>
+                <!-- ALERT ERROR -->
+                <div class="alert alert-danger"></div>
+                <div class="alert alert-success"></div>
+                <!-- /ALERT ERROR -->
+                <input type="submit" name="submit" value="SIMPAN">
+            </form>
+            <!-- /FORM -->
+        </div>
     </body>
     <script type="text/javascript">
         $.ajaxSetup({
@@ -59,7 +50,7 @@
                             $.each(response.message, function (error_key, error_message){
                                 html_error += error_key;
                                 $.each(error_message, function (message){
-                                    html_error += '<li>'+ this +'</li>';
+                                    html_error += ' ' + this + '<br>' ;
                                 });
                             });
                             html_error += '</ul>';
@@ -75,4 +66,5 @@
             });
         });
     </script>
+    @stop
 </html>
