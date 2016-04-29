@@ -12,7 +12,7 @@
             <h1>Buka Toko Baru</h1>
             <p>Isi Informasi Toko</p>
             <!-- FORM -->
-            <form class="createtoko" action="/toko" method="post">
+            <form class="createtoko" action="admin/toko" method="post">
                 <input type="text" name="nama_toko" value="" placeholder="NAMA TOKO">
                 <input type="text" name="slogan" value="" placeholder="SLOGAN">
                 <textarea name="deskripsi" rows="4" cols="40" placeholder="DESKRIPSI TOKO"></textarea>
@@ -40,7 +40,7 @@
                 event.preventDefault();
                 var data = $('.createtoko').serializeArray();
                 $.ajax({
-                    url : "{{url('toko/validasi_create')}}",
+                    url : "{{url('admin/toko/validasi_create')}}",
                     method : 'POST',
                     data : data,
                     success : function(response) {

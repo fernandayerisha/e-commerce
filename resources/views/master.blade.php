@@ -10,19 +10,23 @@
     .footer{
       height: auto;
       background-color: #f8f8f8;
-      padding-bottom: 20px;
-      position: absolute;
+      border: 1px solid;
+      border-color: #e7e7e7;
+      padding: 20px 0 20px;
+      position: relative;
       bottom: 0;
       width: 100%;
+      margin-top: 20px;
     }
+
     html {
       position: relative;
       min-height: 100%;
     }
+
     body {
-      /* Margin bottom by footer height */
       margin-bottom: 60px;
-      }
+    }
   </style>
   @yield('head')
 </head>
@@ -90,23 +94,34 @@
   <!-- this is footer -->
   <footer class="footer">
     <div class="container-fluid" id="footer">
-      <h1 align="center"> This is Footer</h1>
       <div class="container">
         <div class="col-md-4">
-          <h3>This is Footer tab 1</h3>
+          <h4 ><b>INFORMASI</b></h4 >
           <p>
-            Contact @EaEaEa<br>
-            Address Mangan @ti<br>
-            Website ManganATi.com<br>
+            Tentang Kami <br>
+            Hubungi Kami <br>
+            Persetujuan Keanggotaan <br>
+            Persetujuan Layanan <br>
           </p>
         </div>
         <div class="col-md-4">
-          <h3>This is Footer tab 2</h3>
-          <p>Ngomong Kuro</p>
+          <h4 ><b>BANTUAN</b></h4 >
+          <p>
+            Cara Pemesanan <br>
+            Cara Pembayaran <br>
+            Info Pengiriman <br>
+            Pembatalan Transaksi <br>
+          </p>
         </div>
         <div class="col-md-4">
-          <h3>This is Footer tab 3</h3>
-          <p>Ngomong Kuro</p>
+          <h4 ><b>LAYANAN</b></h4 >
+          <p>
+            My Account <br>
+            Track Order <br>
+            Customer Care <br>
+            Lokasi Store <br>
+            Konfirmasi Pembayaran <br>
+          </p>
         </div>
       </div>
 

@@ -6,7 +6,6 @@
         <meta charset="utf-8">
         <title>Daftar Toko</title>
         <link rel="stylesheet" href="{{ url('assets/css/style_indextoko.css') }}">
-        {{ Session::get('notifikasi') }} <!-- hasil pesan notifikasi -->
     </head>
     <body>
         <div class="overlay"><span>Mohon Tunggu Sebentar...</span></div>
@@ -44,24 +43,6 @@
                     @endforeach
                 </tbody>
             </table>
-                <!-- <a href="/toko/{{$toko->nama_toko}}">
-                    <p> ID        : {{ $toko->id }} </p>
-                </a>
-                    <p> Nama Toko       : {{ $toko->nama_toko }} </p>
-                    <p> Slogan          : {{ $toko->slogan }} </p>
-                    <p> Deskripsi       : {{ $toko->deskripsi }} </p>
-                    <p> Asal Pengiriman : {{ $toko->alamat }} </p>
-
-                    {{ date('d F Y' , strtotime($toko->created_at)) }} <br> <br>
-
-                    <form class="" id="{{$toko->id}}" action="/toko/{{$toko->id}}" method="post">
-                        <a href="/toko/{{$toko->id}}/edit"><input type="button" value="UBAH"></a>
-                        <input type="hidden" name="id" value="{{$toko->id}}">
-                        <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="button" value="HAPUS" onClick="deleteToko({{$toko->id}})">
-                    </form>
-                    <hr> -->
         </div>
     </body>
     <script type="text/javascript">
