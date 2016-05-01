@@ -9,9 +9,29 @@ margin: 60px;
 padding: 20px;
 }
 table {width:100%;}
+.overlay{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+  text-align: center;
+  font-size: 25px;
+  display: none;
+}
+.overlay span{
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  left: 0px;
+}
 </style>
 </head>
 <body>
+<div class="overlay"><span>Product berhasil ditambahkan</span></div>
 <center><h1><u>FORMOLIR PENAMBAHAN BARANG</u></h1></center>
 <div id="model">
 @if (count($errors) > 0)
@@ -24,22 +44,19 @@ table {width:100%;}
     </div>
 @endif
 <div class="alert alert-danger" style="display:none; background-color:red; color:white;"></div>
-<div class="alert alert-success" style="display:none;"></div>
+<div class="alert alert-success" style="display:none; background-color:green; color:white;"></div>
 <form class="formproduct" action="/product" method="post">
 	<table>
 	<tr>
 		<td>Nama Barang</td>
 		<td>:</td>
 		<td><input type="text" name="nama" size="25"></td>
-    <td>{{ ($errors->has('nama')) ? $errors->first('nama') : '' }}</td>
-    <br>
 	</tr>
 
 	<tr>
   	<td>Harga</td>
 		<td>:</td>
 		<td><input type="text" name="harga" ></td>
-    <td>{{ ($errors->has('harga')) ? $errors->first('harga') : '' }}</td>
 	</tr>
 
   <tr>
@@ -71,6 +88,8 @@ table {width:100%;}
 <br>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <input type="submit" value="Tambahkan">
+<br>
+
 </form>
 </div>
 </body>
@@ -87,7 +106,8 @@ table {width:100%;}
     $('.formproduct').submit(function(event){
       event.preventDefault();
       var data = $('.formproduct').serializeArray();
-      $.ajax({
+      $('.overlay').fadeIn(100, function(){
+        $.ajax({
         url : "{{url('product/validasi_create')}}",
         method : 'POST',
         data : data,
@@ -105,13 +125,15 @@ table {width:100%;}
             $('.alert-danger').html(html_error);
             $('.alert-danger').show();
           } else {
-            $('.alert-success').html('Product sudah berhasil ditambahkan');
-            $('.alert-success').show();
+            $('.overlay').fadeOut(100);
+            window.location.replace('/product');
           }
         }
       });
     });
+  });
 
   });
 </script>
+<button><a href="/product">Back</a></button>
 </html>

@@ -17,18 +17,26 @@ class ProductController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * untuk tampilan pertama kali, daftar product
      */
     public function index()
     {
       $products = Product::all();
-
-      return view('product.index', ['products' => $products]);
+      $categorys = Categoryku::all();
+      $sellers = Sellers::all();
+      // return view('product.index', ['products' => $products], ['cat' => $categorys], ['seller' => $sellers]);
+      return view('product.index', array(
+        'kategori' => $categorys,
+        'products' => $products,
+        'seller' => $sellers
+      ));
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * untuk form penambahan product
      */
     public function create()
     {
@@ -46,6 +54,7 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * untuk simpan ke database, pertama kali(product baru)
      */
     public function store(Request $request)
     {
@@ -57,6 +66,7 @@ class ProductController extends Controller
         $product->save();
     }
 
+    // untuk validasi form
     public function validation(Request $request)
     {
       $return = array();
@@ -85,6 +95,7 @@ class ProductController extends Controller
         return $return;
     }
 
+    // fungsi untuk validasi pada form penambahan product+simpan ke db
     public function validasi_create(Request $request)
     {
       $validasi = $this->validation($request);
@@ -96,6 +107,7 @@ class ProductController extends Controller
       }
     }
 
+    // fungsi untuk validasi pada form edit product+simpan ke db
     public function validasi_edit(Request $request, $id)
     {
       $validasi = $this->validation($request);
@@ -112,6 +124,7 @@ class ProductController extends Controller
      *
      * @param
      * @return \Illuminate\Http\Response
+     * untuk menampilkan detail product
      */
     public function show($id)
     {
@@ -126,7 +139,7 @@ class ProductController extends Controller
 
         // return view('product.detail')->with('product', $product);
         return view('product.detail', array(
-          'cat' => $category,
+          'kategori' => $category,
           'product' => $product,
           'seller' => $sellers
         ));
@@ -138,6 +151,7 @@ class ProductController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * untuk menampilkan form untuk edit/mengubah product
      */
     public function edit($id)
     {
@@ -165,6 +179,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * untuk menyimpan di database setelah diedit/diubah
      */
     public function update(Request $request, $id)
     {
@@ -181,12 +196,18 @@ class ProductController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * unutuk menghapus data
      */
     public function destroy($id)
     {
+      if(empty($id)){
+        $return['status'] = 'error';
+      }else{
         $product = Product::find($id);
         $product->delete();
-
+        $return['status'] = 'success';
+      }
+        // return Redirect::route('product.index');
         return redirect('product')->with('pesan', 'Product telah dihapus');
     }
 }
