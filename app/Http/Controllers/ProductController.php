@@ -23,12 +23,12 @@ class ProductController extends Controller
     {
       $products = Product::all();
       $categorys = Categoryku::all();
-      $sellers = Sellers::all();
-      // return view('product.index', ['products' => $products], ['cat' => $categorys], ['seller' => $sellers]);
+      $toko = Toko::all();
+      // return view('product.index', ['products' => $products], ['cat' => $categorys], ['toko' => $toko]);
       return view('product.index', array(
         'kategori' => $categorys,
         'products' => $products,
-        'seller' => $sellers
+        'toko' => $toko
       ));
     }
 

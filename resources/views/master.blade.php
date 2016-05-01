@@ -23,10 +23,6 @@
       position: relative;
       min-height: 100%;
     }
-
-    body {
-      margin-bottom: 60px;
-    }
   </style>
   @yield('head')
 </head>
