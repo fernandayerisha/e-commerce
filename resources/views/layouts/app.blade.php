@@ -48,7 +48,7 @@
               @if (Auth::guest())
               <li><a href="{{url('admin/user')}}">User</a></li>
               <li><a href="{{url('product')}}">Product</a></li>
-              <li><a href="{{url('admin/toko')}}">Seller</a></li>
+              <li><a href="{{url('admin/toko')}}">Toko</a></li>
               @else
               <li><a href="{{url('admin/user')}}">User</a></li>
               <li><a href="{{url('admin/product')}}">Product</a></li>

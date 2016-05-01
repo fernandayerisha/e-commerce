@@ -55,11 +55,11 @@
                 @if (Auth::guest())
                 <li><a href="{{url('admin/user')}}">User</a></li>
                 <li><a href="{{url('product')}}">Product</a></li>
-                <li><a href="{{url('admin/toko')}}">Seller</a></li>
+                <li><a href="{{url('admin/toko')}}">Toko</a></li>
                 @else
                 <li><a href="{{url('admin/user')}}">User</a></li>
                 <li><a href="{{url('admin/product')}}">Product</a></li>
-                <li><a href="{{url('admin/toko')}}">Seller</a></li>
+                <li><a href="{{url('admin/toko')}}">Toko</a></li>
                 @endif
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Another</li>

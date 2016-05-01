@@ -9,10 +9,10 @@ Route::get('/portofolio', 'MainController@portofolio');
 //resource restfull
 Route::resource('product', 'ProductController');
 
-//validate toko
 Route::group(['prefix' => 'admin'], function()
 {
   Route::get('/', array('as' => 'login', 'uses' => 'Auth\AuthController@getLogin'));
+  // ROUTE TOKO
   Route::group(['prefix' => 'toko', 'middleware' => 'auth'], function()
   {
     Route::resource('/', 'TokoController');
@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin'], function()
     Route::post('validasi_edit', 'TokoController@validasi_edit');
     Route::post('validasi_delete', 'TokoController@validasi_delete');
   });
+  // ROUTE USER
   Route::group(['prefix' => 'user', 'middleware' => 'auth'], function(){
     Route::resource('/', 'MasterController');
     Route::post('do_create', 'MasterController@do_create');
