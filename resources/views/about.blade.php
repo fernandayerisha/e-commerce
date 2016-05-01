@@ -3,7 +3,7 @@
 <head>
   @extends('master')
   @section('content')
-  <title>Halaman E-Commerce | Portofolio</title>
+  <title>Halaman E-Commerce | About</title>
   <style>
     .title{
       background-color: #bdc3c7;
@@ -14,7 +14,7 @@
 </head>
 <body>
   <div class="container-fluid" align="center">
-    <p class="title">Selamat Datang, Ini Halaman Portofolio</p>
+    <p class="title">Selamat Datang, Ini Halaman About</p>
   </div>
 </body>
 @stop

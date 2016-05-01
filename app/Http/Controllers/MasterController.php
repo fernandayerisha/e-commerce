@@ -16,7 +16,7 @@ class MasterController extends Controller
      */
     public function index(Request $request)
     {
-      $userku = User::paginate(10);
+      $userku = User::paginate(20);
 
       if ($request->ajax()) {
         return $userku;
@@ -91,11 +91,11 @@ class MasterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-      $this->validate($request, [
-        'nama'     => 'required',
-        'email'    => 'required|email',
-        'password' => 'required',
-      ]);
+      // $this->validate($request, [
+      //   'nama'     => 'required',
+      //   'email'    => 'required|email',
+      //   'password' => 'required',
+      // ]);
 
       $userku = User::find($id);
       $userku->nama     = $request->nama;
@@ -103,7 +103,6 @@ class MasterController extends Controller
       $userku->password = $request->password;
 
       $userku->save();
-      return redirect('user')->with('message', 'Data Telah di Update');
     }
 
     /**
@@ -112,6 +111,26 @@ class MasterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function do_edit(Request $request, $id){
+      $validasi = $this->validation($request);
+      if ($validasi['status'] == 'success')
+      {
+        $this->update($request, $id);
+      }else{
+        return $validasi;
+      }
+    }
+
+    public function do_create(Request $request){
+      $validasi = $this->validation($request);
+      if($validasi['status'] == 'success'){
+        $this->store($request);
+      }else{
+        return $validasi;
+      }
+    }
+
+    //end of do_method
 
     public function do_delete(Request $request){
       $id = $request->id_delete;
@@ -137,15 +156,6 @@ class MasterController extends Controller
         $userku->delete();
       }
       return $return;
-    }
-
-    public function do_create(Request $request){
-      $validasi = $this->validation($request);
-      if($validasi['status'] == 'success'){
-        $this->store($request);
-      }else{
-        return $validasi;
-      }
     }
 
     public function ajax_validate(Request $request){
@@ -176,4 +186,20 @@ class MasterController extends Controller
         }
         return $return;
     }
+
+    public function modal_detail(Request $request){
+
+      $dataku = User::find($request->id);
+
+      return view('user.modal_detail')->with('data', $dataku);
+    }
+
+    public function modal_edit(Request $request){
+
+      $dataku = User::find($request->id);
+
+      return view('user.modal_edit')->with('data', $dataku);
+    }
+
+    //END OF MASTER CONTROLER
 }

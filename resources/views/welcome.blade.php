@@ -1,45 +1,43 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
-        </div>
-    </body>
-</html>
+@extends('master')
+@section('head')
+  <style>
+    body{
+      width: 100%;
+      height: 100%;
+    }
+    /*#panel1{
+      background-color: #2ecc71;
+      color: white;
+      height: auto;
+      padding: 50px;
+    }
+    #panel2{
+      background-color: #3498db;
+      color: white;
+      height: auto;
+      padding: 50px;
+    }
+    #panel3{
+      background-color: #34495e;
+      color: white;
+      height: auto;
+      padding: 50px;
+    }*/
+    #headpanel{
+      background-color: #bdc3c7;
+      color: #2c3e50;
+      height: auto;
+      padding: 30px;
+      text-align: center;
+      height: 500px;
+    }
+  </style>
+@stop
+@section('content')
+  <div class="container-fluid">
+    <div class="row" id='headpanel'>
+      <p style="font-size: 50px;">WELCOME TO TOKOKU.COM</p>
+      <h2>Please Login to Access...</h2>
+    </div>
+  </div>
+@stop
