@@ -46,7 +46,7 @@
     <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman User</h3>
     {{ Session::get('message')}}
     {{ $datauser->links() }}<br>
-    <a href="/user/create"><input type="button" value="Create New User" class="btn-info btn-lg"/></a>
+    <a href="admin/user/create"><input type="button" value="Create New User" class="btn-info btn-lg"/></a>
     <hr>
     <table id="example" class="display" cellspacing="0" width="80%">
       <thead>
@@ -57,14 +57,14 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tfoot class="table_content">
+      <tbody class="table_content">
     @foreach ($datauser as $data)
         <tr>
           <td>{{ $data->id }}</td>
           <td>{{ $data->nama }}</td>
           <td>{{ $data->email }}</td>
           <td>
-            <form class="delForm{{$data->id}}" id="{{$data->id}}" action="/user/{{$data->id}}" method="post">
+            <form class="delForm{{$data->id}}" id="{{$data->id}}" action="admin/user/{{$data->id}}" method="post">
               <a onClick="modalDetailTriger({{$data->id}})"><input type="button" class="btn-info btn-sm" value="Detail"></a>
               <a onClick="modalEditTriger({{$data->id}})"><input type="button" class="btn-success btn-sm" value="Edit"></a>
               <a href="" class="modaltrig" data-id="{{$data->id}}"><input type="button" class="btn-info btn-sm" value="Detail"></a>
@@ -77,7 +77,7 @@
           </td>
         </tr>
     @endforeach
-      </tfoot>
+  </tbody>
     </table><br>
     <hr>
     {{ $datauser->links() }}
@@ -98,7 +98,7 @@ function delData(id_delete){
   if (r == true){
     $('.overlay').fadeIn(200, function(){
       $.ajax({
-        url     : "{{url('user/do_delete')}}",
+        url     : "{{url('admin/user/do_delete')}}",
         method  : 'POST',
         data    : {
           'id_delete' : id_delete,

@@ -44,7 +44,7 @@
     <h3 class="formcolor" align="center" style="font-size:30px;">Ini Page Create User</h3>
   </div>
   <div class="container-fluid">
-    <form class="formadd"  action="/user" method="post">
+    <form class="formadd"  action="{{url('admin/user')}}" method="post">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <table>
         <tbody>
@@ -67,7 +67,7 @@
       </table>
       <br>
       <input type="submit" value="Submit">
-      <a href="{{url('user')}}"><input type="button" value="Back"></a>
+      <a href="{{url('admin/user')}}"><input type="button" value="Back"></a>
     </form>
     <p class="alert-ajax"></p>
   </div>
@@ -86,7 +86,7 @@
       event.preventDefault();
       var data = $('.formadd').serializeArray();
       $.ajax({
-        url : "{{url('user/do_create')}}",
+        url : "{{url('admin/user/do_create')}}",
         method : 'POST',
         data : data,
         success : function(response) {

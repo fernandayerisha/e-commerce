@@ -41,9 +41,6 @@ Route::group(['prefix' => 'admin'], function()
 Route::post('product/validasi_create', 'ProductController@validasi_create');
 Route::post('product/validasi_edit/{id}', 'ProductController@validasi_edit');
 
-
 //Auth Route
 // Route::get('/login','MainController@LoginUser');
-
-
 Route::get('/home', 'HomeController@index');
