@@ -44,6 +44,4 @@ Route::post('product/validasi_edit/{id}', 'ProductController@validasi_edit');
 
 //Auth Route
 // Route::get('/login','MainController@LoginUser');
-
-
 Route::get('/home', 'HomeController@index');
