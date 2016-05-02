@@ -121,7 +121,7 @@ function delData(id_delete){
 // ajax untuk refresh data di halaman
 function get_data_table() {
   var page = $('input[name="active_page"]').val();
-  var url = "{{url('user')}}" + "?page=" + page;
+  var url = "{{url('admin/user')}}" + "?page=" + page;
   $.ajax({
     url     : url,
     method  : 'GET',
@@ -158,7 +158,7 @@ function get_data_table() {
 // Modal Detail1
 function modalDetailTriger(id){
   $.ajax({
-    url     : "{{url('user/modal_detail')}}",
+    url     : "{{url('admin/user/modal_detail')}}",
     method  : 'POST',
     data    : {
       'id' : id
@@ -176,7 +176,7 @@ $('.modaltrig').click(function(event){
   event.preventDefault();
   var id = $(this).attr('data-id');
   $.ajax({
-    url     : "{{url('user/modal_detail')}}",
+    url     : "{{url('admin/user/modal_detail')}}",
     method  : 'POST',
     data    : {
       'id' : id
@@ -192,7 +192,7 @@ $('.modaltrig').click(function(event){
 // Modal Edit
 function modalEditTriger(id){
   $.ajax({
-    url     : "{{url('user/modal_edit')}}",
+    url     : "{{url('admin/user/modal_edit')}}",
     method  : 'POST',
     data    : {
       'id' : id

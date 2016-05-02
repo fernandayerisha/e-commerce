@@ -46,7 +46,7 @@
           <!-- Start of Edit -->
 
             <h3 align="center" class="formcolor">Edit User Form</h3>
-            <form class="formadd"  action="{{ url('user/do_edit') }}/{{$data->id}}" method="post">
+            <form class="formadd"  action="{{ url('admin/user/do_edit') }}/{{$data->id}}" method="post">
               <table>
                 <tbody>
                 <tr>
@@ -62,7 +62,7 @@
                 <tr>
                   <td>Password </td>
                   <td>:</td>
-                  <td><input type="password" name="password" value="{{$data->password}}" placeholder="Password..."></td>
+                  <td><input type="text" name="password" value="{{$data->password}}" placeholder="Password..."></td>
                 </tr>
                 <tr>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
