@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin'], function()
     Route::post('validasi_create', 'TokoController@validasi_create');
     Route::post('validasi_edit', 'TokoController@validasi_edit');
     Route::post('validasi_delete', 'TokoController@validasi_delete');
+    Route::post('reload_data_toko', 'TokoController@reload_data_toko');
   });
   // ROUTE USER
   Route::group(['prefix' => 'user', 'middleware' => 'auth'], function(){
@@ -40,7 +41,6 @@ Route::group(['prefix' => 'admin'], function()
 //validate product
 Route::post('product/validasi_create', 'ProductController@validasi_create');
 Route::post('product/validasi_edit/{id}', 'ProductController@validasi_edit');
-
 
 //Auth Route
 // Route::get('/login','MainController@LoginUser');

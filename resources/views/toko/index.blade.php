@@ -22,7 +22,7 @@
                         <th>PILIHAN</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="data_toko">
                     @foreach($toko as $toko)
                         <tr>
                             <td>{{ $toko->id }}</td>
@@ -32,7 +32,7 @@
                             <td>{{ $toko->alamat }}</td>
                             <td>
                                 <form class="" id="{{$toko->id}}" action="/toko/{{$toko->id}}" method="post">
-                                    <a href="/toko/{{$toko->id}}/edit"><input type="button" value="UBAH"></a>
+                                    <a href="toko/{{$toko->id}}/edit"><input type="button" value="UBAH"></a>
                                     <input type="hidden" name="id" value="{{$toko->id}}">
                                     <input type="hidden" name="_method" value="delete">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -45,6 +45,7 @@
             </table>
         </div>
     </body>
+    <!-- AJAX -->
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -52,13 +53,15 @@
             }
         });
     </script>
+    <!-- /AJAX -->
     <script>
+        // FUNGSI DELETE
         function deleteToko(id){
           var r = confirm("Apa anda yakin akan menghapus toko?");
           if (r == true){
             $('.overlay').fadeIn(500, function(){
               $.ajax({
-                url     : "{{ url('toko/validasi_delete') }}",
+                url     : "{{ url('admin/toko/validasi_delete') }}",
                 method  : 'POST',
                 data    : {
                   'id' : id,
@@ -68,6 +71,7 @@
                     alert('Delete Error');
                   }else{
                     alert('Delete Success!!');
+                    reload_data_toko();
                   }
                 }
               });
@@ -78,6 +82,43 @@
             alert('Delete Canceled!');
           }
         }
+        // /FUNGSI DELETE
+        // FUNGSI RELOAD DATA
+        function reload_data_toko() {
+            var page = $('input[name="active_page"]').val();
+            var url = "{{url('admin/toko')}}" + "?page=" + page;
+            $.ajax({
+                url     : url,
+                method  : 'GET',
+                success : function(response) {
+                    console.log(response);
+                    $('.data_toko').html('');
+                    var data_toko_html = '';
+                    $.each(response.data, function(key, value) {
+                        data_toko_html += '<tr>';
+                            data_toko_html += '<td>'+this.id+'</td>';
+                            data_toko_html += '<td>'+this.nama_toko+'</td>';
+                            data_toko_html += '<td>'+this.slogan+'</td>';
+                            data_toko_html += '<td>'+this.deskripsi+'</td>';
+                            data_toko_html += '<td>'+this.alamat+'</td>';
+                            data_toko_html += '<td>';
+                                data_toko_html += '<form class="deleteToko'+this.id+'" id="'+this.id+'" action="/toko/'+this.id+'" method="post">';
+                                    data_toko_html += '<a href="toko/'+this.id+'/edit"><input type="button" value="UBAH"></a>';
+                                    data_toko_html += '<a href="toko/'+this.id+'"><input type="button" value="LIHAT"></a>';
+                                    data_toko_html += '<input type="hidden" name="id" value="'+this.id+'">';
+                                    data_toko_html += '<input type="hidden" name="_method" value="delete">';
+                                    data_toko_html += '<input type="hidden" name="_token" value="{{ csrf_token() }}">';
+                                    data_toko_html += '<a href="#"><input class="btn-danger btn-sm" type="button" value="HAPUS" onClick="deleteToko('+this.id+')"></a>';
+                                data_toko_html += '</form>';
+                            data_toko_html += '</td>';
+                        data_toko_html += '</tr>';
+                    });
+                    $('.data_toko').html(data_toko_html);
+                    $('.overlay').fadeOut(100);
+                }
+            });
+        }
+        // /FUNGSI RELOAD DATA
     </script>
     @stop
 </html>

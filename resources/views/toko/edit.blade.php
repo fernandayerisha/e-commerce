@@ -22,7 +22,7 @@
       <!-- /VALIDASI -->
         <b>Isi Informasi Toko</b>
       <!-- FORM -->
-        <form class="createtoko" action="{{ url('toko/validasi_edit') }}" method="post">
+        <form class="createtoko" action="{{ url('admin/toko/validasi_edit') }}" method="post">
             <input type="text" name="nama_toko" value="{{$toko->nama_toko}}" placeholder="Nama Toko">
             <br>
             <input type="text" name="slogan" value="{{$toko->slogan}}" placeholder="Slogan Toko">
@@ -52,7 +52,7 @@
                 event.preventDefault();
                 var data = $('.createtoko').serializeArray();
                 $.ajax({
-                    url : "{{url('toko/validasi_edit')}}",
+                    url : "{{url('admin/toko/validasi_edit')}}",
                     method : 'POST',
                     data : data,
                     success : function(response) {
