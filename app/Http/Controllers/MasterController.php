@@ -46,7 +46,7 @@ class MasterController extends Controller
         $userku = new User;
         $userku->nama     = $request->nama;
         $userku->email    = $request->email;
-        $userku->password = $request->password;
+        $userku->password = bcrypt($request->password);
 
         $userku->save();
     }

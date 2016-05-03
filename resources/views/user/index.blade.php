@@ -46,7 +46,7 @@
     <h3 align="center" style="font-size:30px;">Selamat Datang, Ini Halaman User</h3>
     {{ Session::get('message')}}
     {{ $datauser->links() }}<br>
-    <a href="admin/user/create"><input type="button" value="Create New User" class="btn-info btn-lg"/></a>
+    <a href="/admin/user/create"><input type="button" value="Create New User" class="btn-info btn-lg"/></a>
     <hr>
     <table id="example" class="display" cellspacing="0" width="80%">
       <thead>
@@ -77,7 +77,7 @@
           </td>
         </tr>
     @endforeach
-  </tbody>
+      </tbody>
     </table><br>
     <hr>
     {{ $datauser->links() }}
